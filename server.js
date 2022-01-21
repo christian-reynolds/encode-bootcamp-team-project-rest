@@ -1,6 +1,9 @@
 var express = require('express');
 var app = express();
+var cors = require('cors');
 const { getMerkleRoot, getProof } = require('./merkletree');
+
+app.use(cors())
 
 // This would get called from the React application to create and retrieve the merkle root
 // Example URL/query string to pass the addresses:
