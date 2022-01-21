@@ -17,10 +17,11 @@ console.log('Whitelist Merkle Tree\n', merkleTree.toString());
 // This gets called with the list of addresses that we need to whitelist
 exports.getMerkleRoot = (addressArray) => {
     const leafNodes = addressArray.map(addr => keccak256(addr));
+
+    // TODO: We need to save this somewhere so that we can use it later with the getProof function
     const merkleTree = new MerkleTree(leafNodes, keccak256, { sortPairs: true });
     const rootHash = merkleTree.getRoot().toString('hex');
 
-    // TODO: We need to save this somewhere so that we can use it later with the getProof function
     return rootHash;
 };
 
