@@ -10,17 +10,24 @@ app.use(cors())
 
 // This would get called from the React application to create and retrieve the merkle root
 // Example URL/query string to pass the addresses:
-// http://localhost:8081/merkle?address[]=0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D&address[]=0x5178E1848AaFB9a1e8C7370205B2B6e680eCa323&address[]=0xA93Fbde736Be952019a3c32cFCc2065c1B2AcDf1
-app.get('/merkle', function (req, res) {
-    let addressArray = req.query.address;
-    console.log(addressArray);
+// http://localhost:8081/merkle/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
+app.get('/merkle/:address', async function (req, res) {
+    let address = req.params.address;
+
+    // Get the ERC20 holders
+    let data = await getBalances(address);
+    
+    // Get each address from the dictionary
+    const addressArray = Object.keys(data);
+
+    // Create the Merkle Tree and send the Root back
     res.end(getMerkleRoot(addressArray));
 })
 
 // This would get called from the React application with a single address when someone is trying to claim their NFT
 // Example URL:
-// http://localhost:8081/merkle/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
-app.get('/merkle/:address', function (req, res) {
+// http://localhost:8081/merkle-claim/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
+app.get('/merkle-claim/:address', function (req, res) {
     let address = req.params.address;
 
     console.log(address);

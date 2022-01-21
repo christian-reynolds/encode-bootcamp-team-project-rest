@@ -33,9 +33,9 @@ exports.getBalances = async (contractAddress) => {
     //subtract all "from" values for each address's balance
     events.forEach(event => balances[event.returnValues.from] = balances[event.returnValues.from] - event.returnValues.value);
     //display output
-    for(var address in balances) {
-        console.log(address,balances[address])
-    };
+    // for(var address in balances) {
+    //     console.log(address,balances[address])
+    // };
 
     return balances;
 };
