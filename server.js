@@ -25,13 +25,20 @@ app.get('/merkle/:address', async function (req, res) {
 
     console.log(address);
     res.end(getProof(address));
+})
+
+// This is just being used temporarily to test the function getBalances
+// Example URL:
+// http://localhost:8081/get-balances/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
+app.get('/get-balances', async function (req, res) {
+    let address = req.params.address;
 
     // This is an example of calling getBalances.  DO NOT DELETE
-    // let data = await getBalances(address);
-    // res.writeHead(200, { 'Content-Type': 'application/json' });
-    // console.log(data);
-    // res.write(JSON.stringify(data));
-    // res.end();
+    let data = await getBalances(address);
+    res.writeHead(200, { 'Content-Type': 'application/json' });
+    console.log(data);
+    res.write(JSON.stringify(data));
+    res.end();
 })
 
 var server = app.listen(8081, function () {
