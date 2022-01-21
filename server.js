@@ -27,9 +27,11 @@ app.get('/merkle/:address', async function (req, res) {
     res.end(getProof(address));
 
     // This is an example of calling getBalances.  DO NOT DELETE
-    // let test = await getBalances(address);
-    // console.log(test);
-    // res.send({ test });
+    // let data = await getBalances(address);
+    // res.writeHead(200, { 'Content-Type': 'application/json' });
+    // console.log(data);
+    // res.write(JSON.stringify(data));
+    // res.end();
 })
 
 var server = app.listen(8081, function () {
