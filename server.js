@@ -20,7 +20,7 @@ app.get('/merkle', function (req, res) {
 // This would get called from the React application with a single address when someone is trying to claim their NFT
 // Example URL:
 // http://localhost:8081/merkle/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
-app.get('/merkle/:address', async function (req, res) {
+app.get('/merkle/:address', function (req, res) {
     let address = req.params.address;
 
     console.log(address);
@@ -30,7 +30,7 @@ app.get('/merkle/:address', async function (req, res) {
 // This is just being used temporarily to test the function getBalances
 // Example URL:
 // http://localhost:8081/get-balances/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
-app.get('/get-balances', async function (req, res) {
+app.get('/get-balances/:address', async function (req, res) {
     let address = req.params.address;
 
     // This is an example of calling getBalances.  DO NOT DELETE
