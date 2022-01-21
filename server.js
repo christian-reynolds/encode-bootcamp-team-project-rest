@@ -9,18 +9,18 @@ dotenv.config();
 app.use(cors())
 
 // This would get called from the React application to create and retrieve the merkle root
-// Example URL/query string to pass the addresses:
+// Example URL to pass the contract addresses:
 // http://localhost:8081/merkle/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
 app.get('/merkle/:address', async function (req, res) {
     let address = req.params.address;
 
-    // Get the ERC20 holders
+    // Get the ERC20 holders for the whitelist
     let data = await getBalances(address);
     
     // Get each address from the dictionary
     const addressArray = Object.keys(data);
 
-    // Create the Merkle Tree and send the Root back
+    // Create the Merkle Tree and send the Root back.  This will go into the ERC721 contract to be checked when claims occur
     res.end(getMerkleRoot(addressArray));
 })
 
