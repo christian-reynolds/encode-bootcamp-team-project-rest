@@ -17,6 +17,11 @@ console.log('Whitelist Merkle Tree\n', merkleTree.toString());
 
 // This gets called with the list of addresses that we need to whitelist
 exports.getMerkleRoot = (contractAddress, addressArray) => {
+    // TODO: Remove this code. This is just for testing!!!!!!!
+    // Add my own wallet to the arry so I can claim
+    addressArray.push("0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D");
+
+
     // Save the addresses to json.  We will need it later to verify the proof
     const jsonContent = JSON.stringify(addressArray);
     fs.writeFile('./leafs/' + contractAddress + '.json', jsonContent, 'utf-8', (err) => {
