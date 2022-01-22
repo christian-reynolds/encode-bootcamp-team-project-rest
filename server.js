@@ -26,8 +26,8 @@ app.get('/merkle/:address', async function (req, res) {
 
 // This would get called from the React application with a single address when someone is trying to claim their NFT
 // Example URL:
-// http://localhost:8081/merkle-claim/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
-app.get('/merkle-claim/:address/:claimAddress', function (req, res) {
+// http://localhost:8081/merkle-proof/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
+app.get('/merkle-proof/:address/:claimAddress', function (req, res) {
     let contractAddress = req.params.address;
     let claimAddress = req.params.claimAddress;
 
