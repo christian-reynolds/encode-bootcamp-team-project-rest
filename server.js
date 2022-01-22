@@ -21,17 +21,17 @@ app.get('/merkle/:address', async function (req, res) {
     const addressArray = Object.keys(data);
 
     // Create the Merkle Tree and send the Root back.  This will go into the ERC721 contract to be checked when claims occur
-    res.end(getMerkleRoot(addressArray));
+    res.end(getMerkleRoot(address, addressArray));
 })
 
 // This would get called from the React application with a single address when someone is trying to claim their NFT
 // Example URL:
 // http://localhost:8081/merkle-claim/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
-app.get('/merkle-claim/:address', function (req, res) {
-    let address = req.params.address;
+app.get('/merkle-claim/:address/:claimAddress', function (req, res) {
+    let contractAddress = req.params.address;
+    let claimAddress = req.params.claimAddress;
 
-    console.log(address);
-    res.end(getProof(address));
+    res.end(getProof(contractAddress, claimAddress));
 })
 
 // This is just being used temporarily to test the function getBalances
