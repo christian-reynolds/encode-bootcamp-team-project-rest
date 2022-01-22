@@ -55,5 +55,5 @@ exports.getProof = (contractAddress, claimAddress) => {
     // Hash the address that is trying to claim
     const leaf = keccak256(claimAddress);
 
-    return tree.getHexProof(leaf).toString();
+    return tree.getHexProof(leaf);
 };

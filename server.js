@@ -31,7 +31,7 @@ app.get('/merkle-proof/:address/:claimAddress', function (req, res) {
     let contractAddress = req.params.address;
     let claimAddress = req.params.claimAddress;
 
-    res.end(getProof(contractAddress, claimAddress));
+    res.send(getProof(contractAddress, claimAddress));
 })
 
 // This is just being used temporarily to test the function getBalances
