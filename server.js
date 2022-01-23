@@ -5,6 +5,7 @@ let bodyParser = require('body-parser');
 let dbConfig = require('./database/db');
 const { getMerkleRoot, getProof } = require('./merkletree');
 const { getBalances } = require("./web3");
+const { getBlockNum } = require("./data");
 const dotenv = require('dotenv');
 dotenv.config();
 
@@ -35,10 +36,14 @@ app.use('/contracts', contractRoute)
 // Example URL to pass the contract addresses:
 // http://localhost:8081/merkle/0x41fACac9f2aD6483a2B19F7Cb34Ef867CD17667D
 app.get('/merkle/:address', async function (req, res) {
-    let address = req.params.address;
+    const address = req.params.address;
+
+    // Get the block number from when the contract was created
+    const blockNum = await getBlockNum(address);
+    console.log('blockNum: ', blockNum);
 
     // Get the ERC20 holders for the whitelist
-    let data = await getBalances(address);
+    const data = await getBalances(address, blockNum);
     
     // Get each address from the dictionary
     const addressArray = Object.keys(data);
