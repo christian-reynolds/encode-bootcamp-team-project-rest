@@ -12,6 +12,9 @@ The application is responsible for the following:
 
 The application has a dependency on MongoDB.  MongoDB needs to be running on your machine to run all features of the app.
 
+.env file is required with the following:
+`INFURA_RPC_URL={YOUR_INFURA_URL}`
+
 In the project directory, you can run:
 
 ### `npm i`
